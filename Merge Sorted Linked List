@@ -1,0 +1,20 @@
+struct Node* SortedMerge(struct Node* a, struct Node* b)
+{
+struct Node* merge=NULL;
+if(a==NULL)
+return b;
+if(b==NULL)
+return a;
+if(a->data<b->data)
+{
+    merge=a;
+    merge->next=SortedMerge(a->next,b);
+    
+}
+else
+{
+    merge=b;
+     merge->next=SortedMerge(a,b->next);
+}
+return merge;
+}
