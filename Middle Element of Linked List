@@ -1,0 +1,58 @@
+/*Method 1*/
+int getMiddle(Node *head)
+{
+   // Your code here
+   Node* temp=head;
+   int c=1;
+   while(temp->next!=NULL)
+   {
+   c++;
+   temp=temp->next;
+   }
+   
+ if(c%2==0)
+   c+=2;
+   else
+   c++;
+   c=c/2;
+   temp=head;
+   
+   while(temp!=NULL)
+   {
+       int t=temp->data;
+       c--;
+       if(c==0)
+       return t;
+       temp=temp->next;
+   }
+}
+
+
+
+
+//Method 2
+
+
+void printMiddle(struct node* head)
+{
+    int count = 0;
+    struct node* mid = head;
+ 
+    while (head != NULL)
+    {
+         
+        // Update mid, when 'count'
+        // is odd number
+        if (count & 1)
+            mid = mid->next;
+ 
+        ++count;
+        head = head->next;
+    }
+ 
+    // If empty list is provided
+    if (mid != NULL)
+        printf("The middle element is [%d]\n\n",
+                mid->data);
+}
+ 
