@@ -1,0 +1,19 @@
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        int res=0;
+        int revres=0;
+        int mul=1;
+        while(head!=NULL)
+        {
+            res=res*10+head->data;
+            revres=mul*head->data+revres;
+            mul=mul*10;
+            head=head->next;
+        }
+        return res==revres;
+        //Your code here
+    }
+};
