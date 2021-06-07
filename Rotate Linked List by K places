@@ -1,0 +1,28 @@
+class Solution
+{
+    public:
+    //Function to rotate a linked list.
+    Node* rotate(Node* head, int k)
+    {
+       Node* newtail=head;
+       k--;
+       while(k)
+       {
+           newtail=newtail->next;
+           k--;
+       }
+       if(newtail->next==NULL)
+       return head;
+       Node* oldtail=head;
+       while(oldtail->next!=NULL)
+       {
+           oldtail=oldtail->next;
+       }
+      oldtail->next=head;
+    
+      Node *temp=newtail->next;
+        newtail->next=NULL;
+      return temp;
+      
+    }
+};
