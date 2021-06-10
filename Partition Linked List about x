@@ -1,0 +1,71 @@
+struct Node* partition(struct Node* head, int x) {
+    Node* pre=NULL; Node* midhead=NULL;
+    Node* latehead=NULL;
+    Node* mid=NULL;
+    Node* late=NULL;
+    
+    Node* temp1=head;
+    Node* newhead=NULL;
+    while(temp1!=NULL)
+    {
+        Node* temp=temp1;
+        temp1=temp1->next;
+        if(temp->data<x)
+        {
+            if(pre==NULL)
+            {
+                newhead=temp;
+                pre=temp;
+                
+                
+            }
+            else
+            {
+            pre->next=temp;
+            pre=pre->next;
+            }
+            pre->next=NULL;
+        }
+        else if(temp->data>x)
+        {
+            if(late==NULL)
+            {
+                if(pre==NULL&&mid==NULL)
+                newhead=temp;
+                 late=temp;                
+                latehead=temp;
+            }
+            else
+            {
+                late->next=temp;
+                late=temp;
+            }
+            late->next=NULL;
+        }
+        else
+        {
+         if(mid==NULL)
+         {
+               if(pre==NULL)
+                newhead=temp;
+                 mid=temp;
+                midhead=temp;
+         }
+         else
+         {
+             mid->next=temp;
+             mid=temp;
+         }
+         mid->next=NULL;
+        }
+      
+    }
+    if(pre!=NULL&&mid!=NULL)
+    pre->next=midhead;
+     if(mid!=NULL)
+    mid->next=latehead;
+    else if(pre!=NULL)
+    pre->next=latehead;
+     return newhead;
+    // code here
+}
