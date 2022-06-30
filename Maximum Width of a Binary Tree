@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int widthOfBinaryTree(TreeNode* root) {
+      long long mod=1e16+7;
+        int cal=1;
+        
+        queue<pair<TreeNode*,long long>>q;
+        deque<pair<TreeNode*,long long>>dq;
+        long long m=1;
+        q.push({root,cal});
+        while(!q.empty())
+        {
+            TreeNode*  curr=q.front().first;
+            long long val=q.front().second;
+            
+            q.pop();
+            if(curr->left)
+            {
+              dq.push_back({curr->left,(2*val)%mod}); 
+              
+            }
+            if(curr->right)
+            {
+                dq.push_back({curr->right,(2*val+1)%mod});  
+            }
+            
+            if(q.empty()&&!dq.empty())
+            {
+                //cout<<dq.back().second<<" "<<dq.front().second<<endl;
+                if(dq.front().first->val!=0)
+                {
+                    cout<<dq.back().second<<" "<<dq.front().second<<endl;
+                }
+                m=max(m,dq.back().second-dq.front().second+1);
+                while(!dq.empty())
+                {
+                    q.push(dq.front());
+                    dq.pop_front();
+                }
+            }
+        }
+        return m;
+    }
+};
